@@ -10,6 +10,7 @@ from moar import FileStorage, Thumbnailer
 
 from .jinja_includewith import IncludeWith
 from .markdown_ext import MarkdownExtension
+from .tless import LessExtension
 from .tglobals import active
 
 
@@ -81,5 +82,5 @@ def get_jinja_loader(source_dir):
 def get_jinja_options():
     return {
         'autoescape': True,
-        'extensions': [MarkdownExtension, 'jinja2.ext.with_', IncludeWith],
+        'extensions': [MarkdownExtension, 'jinja2.ext.with_', IncludeWith, LessExtension],
     }
