@@ -208,13 +208,18 @@ class Clay(object):
         try:
             content = None
             fn, ext = splitext(path)
+
+            index = self.get_pages_index()
+            context = self.settings.copy()
+            context['index'] = index
+
             if ext == '.html':
                 mdpath = join(self.source_dir, fn + '.md')
                 if isfile(mdpath):
-                    content = self.render(mdpath, self.settings)
+                    content = self.render(mdpath, context)
 
             if content is None:
-                content = self.render(path, self.settings)
+                content = self.render(path, context)
 
         except TemplateNotFound as e:
             return self.show_notfound(e)
